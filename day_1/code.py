@@ -4,6 +4,7 @@ file = 'input.txt'
 if os.getenv('ONLINE'):
     file = 'custom_input.txt'
 
+
 with open(file, 'r') as f:
     # The two counts we want to track
     larger = 0
