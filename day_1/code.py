@@ -1,4 +1,4 @@
-with open(file, 'r') as f:
+with open('input.txt', 'r') as f:
     larger = 0
     larger_3 = 0
 
