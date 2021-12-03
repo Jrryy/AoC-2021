@@ -52,7 +52,7 @@ epsilon = ~gamma & bitmask
 part_1 = gamma * epsilon
 print(f'Part 1 {part_1}')
 
-oxygen = int('0b' + find_oxygen(tree), 2)
-carbon = int('0b' + find_carbon(tree), 2)
+oxygen = int(find_oxygen(tree), 2)
+carbon = int(find_carbon(tree), 2)
 part_2 = oxygen * carbon
 print(f'Part 2 {part_2}')
