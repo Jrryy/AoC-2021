@@ -1,6 +1,3 @@
-from pprint import pprint as pp
-
-
 def init_tree(depth: int, max_depth: int, current: list) -> None:
     if depth <= max_depth:
         current += [[], [], []]
