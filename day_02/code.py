@@ -12,5 +12,6 @@ with open('input.txt', 'r') as f:
             y -= units
     product_1 = x * y
     product_2 = x * y_2
-    print(product_1)
-    print(product_2)
+    
+    print(f'Part 1: {product_1}')
+    print(f'Part 2: {product_2}')
