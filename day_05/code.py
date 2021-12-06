@@ -1,6 +1,7 @@
 field = [['.'] * 1000 for _ in range(1000)]
+field_diagonals = [['.'] * 1000 for _ in range(1000)]
 
-count = 0
+count = count_diagonals = 0
 
 with open('input.txt', 'r') as f:
     for line in f:
@@ -31,11 +32,11 @@ with open('input.txt', 'r') as f:
 
         if diagonal:
             for x, y in zip(r_x, r_y):
-                if field[x][y] == '.':
-                    field[x][y] = 'o'
-                elif field[x][y] == 'o':
-                    field[x][y] = 'X'
-                    count += 1
+                if field_diagonals[x][y] == '.':
+                    field_diagonals[x][y] = 'o'
+                elif field_diagonals[x][y] == 'o':
+                    field_diagonals[x][y] = 'X'
+                    count_diagonals += 1
         else:
             for x in r_x:
                 for y in r_y:
@@ -44,10 +45,11 @@ with open('input.txt', 'r') as f:
                     elif field[x][y] == 'o':
                         field[x][y] = 'X'
                         count += 1
+                    if field_diagonals[x][y] == '.':
+                        field_diagonals[x][y] = 'o'
+                    elif field_diagonals[x][y] == 'o':
+                        field_diagonals[x][y] = 'X'
+                        count_diagonals += 1
 
-with open('output.txt', 'w') as f:
-    f.write('\n'.join([''.join(line) for line in field]))
-# print(f'Part 1: {count_1}')
-# print(f'Part 2: {count_1 + count_2}')
-
-print(count)
+print(f'Part 1: {count}')
+print(f'Part 2: {count_diagonals}')
