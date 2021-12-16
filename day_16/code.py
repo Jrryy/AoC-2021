@@ -1,11 +1,12 @@
 from functools import reduce
 from typing import Tuple
 
+
 def decode_packet(data: str, index: int) -> Tuple[int, int, int]:
     version = int(binary[index:index + 3], 2)
-    type = int(binary[index + 3:index + 6], 2)
+    packet_type = int(binary[index + 3:index + 6], 2)
     index += 6
-    if type == 4:
+    if packet_type == 4:
         keep_reading = 1
         literal = ''
         while keep_reading:
@@ -32,22 +33,23 @@ def decode_packet(data: str, index: int) -> Tuple[int, int, int]:
                 index, more_versions, value = decode_packet(data, index)
                 values.append(value)
                 version += more_versions
-        if type == 0:
+        if packet_type == 0:
             final_value = sum(values)
-        elif type == 1:
+        elif packet_type == 1:
             final_value = reduce(lambda x, y: x*y, values, 1)
-        elif type == 2:
+        elif packet_type == 2:
             final_value = min(values)
-        elif type == 3:
+        elif packet_type == 3:
             final_value = max(values)
-        elif type == 5:
+        elif packet_type == 5:
             final_value = 1 if values[0] > values[1] else 0
-        elif type == 6:
+        elif packet_type == 6:
             final_value = 1 if values[0] < values[1] else 0
         else:
             final_value = 1 if values[0] == values[1] else 0
 
     return index, version, final_value
+
 
 with open('input.txt', 'r') as f:
     binary = bin(int(f.read().strip(), 16))[2:]
